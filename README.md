@@ -70,14 +70,38 @@ on every update. Run the script again after an update, or wire it to a SessionSt
 It compares the version stamp in `references/SOURCE.txt` against the current bundled copy and
 does nothing when they match.
 
-It looks for the bundled skill in the usual temp locations on macOS, Linux, WSL and Git Bash
-on Windows. If yours is somewhere else, point it there:
+## Platform support
+
+The script looks for the bundled skill in these temp locations:
+
+| Platform | Path |
+|---|---|
+| macOS | `/private/tmp/claude-*/bundled-skills` |
+| Linux, WSL | `/tmp/claude-*/bundled-skills` |
+| Custom `TMPDIR` | `$TMPDIR/claude-*/bundled-skills` |
+| Windows, Git Bash | `%LOCALAPPDATA%/Temp/claude-*/bundled-skills` |
+
+**Only the macOS path is verified.** I wrote this on a Mac and have no Linux or Windows
+machine to test on, so the other three are educated guesses. If the script finds nothing it
+says so and leaves your existing references untouched — it will not break anything.
+
+If yours lives somewhere else, point it there:
 
 ```bash
 CLAUDE_BUNDLED_SKILLS_DIR=/path/to/bundled-skills bash scripts/resync.sh --force
 ```
 
-When it finds nothing it says so and leaves your existing references alone.
+To find the path on your machine:
+
+```bash
+find / -type d -name bundled-skills 2>/dev/null | head
+```
+
+If you get it working on Linux or Windows, open an issue with the path and I will add it to
+the list.
+
+Runs on bash 3.2 and up, so macOS's default `/bin/bash` is fine. Works with `stat` from
+either BSD or GNU.
 
 ## If you just want the built-in gone
 
