@@ -70,6 +70,15 @@ on every update. Run the script again after an update, or wire it to a SessionSt
 It compares the version stamp in `references/SOURCE.txt` against the current bundled copy and
 does nothing when they match.
 
+It looks for the bundled skill in the usual temp locations on macOS, Linux, WSL and Git Bash
+on Windows. If yours is somewhere else, point it there:
+
+```bash
+CLAUDE_BUNDLED_SKILLS_DIR=/path/to/bundled-skills bash scripts/resync.sh --force
+```
+
+When it finds nothing it says so and leaves your existing references alone.
+
 ## If you just want the built-in gone
 
 ```json
