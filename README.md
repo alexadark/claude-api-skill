@@ -78,7 +78,10 @@ does nothing when they match.
 
 in `~/.claude/settings.json`. `"disableBundledSkills": true` turns off all bundled skills.
 
-## Notes
+## Related
 
-If an `efficient-delegation` skill is installed, the delegation section defers to it. It works
-without one.
+- [efficient-delegation](https://github.com/alexadark/efficient-delegation-skill) — this skill
+  defers to it for splitting work between models when one is installed. Works fine without it.
+- [garden-check](https://github.com/alexadark/garden-check-skill) — read-only audit of your
+  Claude Code setup. Useful for finding the rest of what is quietly loading.
+- [All my skills](https://github.com/alexadark/skills)
