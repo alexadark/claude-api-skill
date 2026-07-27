@@ -1,0 +1,3 @@
+# Reference docs are Anthropic's, copied from the bundled skill on your own machine.
+# Never commit them. Run scripts/resync.sh to build them locally.
+references/
